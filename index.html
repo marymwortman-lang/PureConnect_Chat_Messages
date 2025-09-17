@@ -1,0 +1,660 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Exclusive Offers — Glamour & Style</title>
+<meta name="description" content="Unlock exclusive offers with a quick message. Mobile-friendly gallery for top deals on glamour and style." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  /* Base & Variables */
+  :root{
+    --bg-dark:#0a0c10;
+    --bg-light:#15181f;
+    --card-bg:#1e222b;
+    --text-primary:#e0e7ee;
+    --text-secondary:#9fa8b8;
+    --accent-blue:#3b82f6; /* A more professional blue */
+    --accent-blue-dark:#2563eb;
+    --border-color:rgba(255,255,255,0.08);
+    --hover-bg:rgba(255,255,255,0.03);
+    --glass-effect:rgba(255,255,255,0.05);
+    --radius-sm:8px;
+    --radius-md:12px;
+    --radius-lg:16px;
+    --spacing-sm:10px;
+    --spacing-md:16px;
+    --shadow-light:0 4px 12px rgba(0,0,0,0.2);
+    --shadow-medium:0 8px 24px rgba(0,0,0,0.3);
+  }
+  html,body{height:100%;}
+  body{
+    margin:0;
+    background:linear-gradient(180deg, var(--bg-dark) 0%, #000000 120%);
+    color:var(--text-primary);
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    font-family: 'Poppins', sans-serif;
+    line-height:1.6;
+    padding-bottom:80px; /* More space for footer */
+  }
+  .container{max-width:800px;margin:0 auto;padding:var(--spacing-md);}
+
+  /* Header */
+  header{
+    display:flex;
+    gap:var(--spacing-sm);
+    align-items:center;
+    padding-bottom:var(--spacing-md);
+    border-bottom:1px solid var(--border-color);
+    margin-bottom:var(--spacing-md);
+  }
+  h1{
+    font-family: 'Montserrat', sans-serif;
+    font-size:24px; /* Slightly larger */
+    margin:0;
+    font-weight:700;
+    color:var(--text-primary);
+  }
+  p.lead{
+    margin-top:4px;
+    margin-bottom:0;
+    color:var(--text-secondary);
+    font-size:14px;
+    font-weight:400;
+  }
+
+  /* Banner */
+  .banner{
+    width:100%;
+    border-radius:var(--radius-md);
+    overflow:hidden;
+    box-shadow:var(--shadow-medium);
+    border:1px solid var(--border-color);
+    margin-bottom:var(--spacing-md);
+    transition:transform 0.2s ease-in-out;
+  }
+  .banner:hover{transform:translateY(-2px) scale(1.005);}
+  .banner img{
+    width:100%;
+    height:auto;
+    display:block;
+    object-fit:cover; /* Ensure banner image covers */
+  }
+
+  /* Grid Layout */
+  .grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Responsive grid */
+    gap:var(--spacing-sm);
+    margin-top:var(--spacing-md);
+  }
+
+  /* Card Styles */
+  .card{
+    background:var(--card-bg);
+    border-radius:var(--radius-md);
+    padding:var(--spacing-sm);
+    position:relative;
+    overflow:hidden;
+    border:1px solid var(--border-color);
+    box-shadow:var(--shadow-light);
+    transition:transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    display:flex;
+    flex-direction:column;
+  }
+  .card:hover{
+    transform:translateY(-3px);
+    box-shadow:var(--shadow-medium);
+    background:linear-gradient(135deg, var(--card-bg), #2a303b);
+  }
+  .card img{
+    width:100%;
+    height:140px; /* Fixed height for consistency */
+    object-fit:cover;
+    border-radius:var(--radius-sm);
+    display:block;
+    margin-bottom:var(--spacing-sm);
+  }
+  .card-content{
+    flex-grow:1;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+  }
+  .card-title{
+    font-family: 'Montserrat', sans-serif;
+    font-size:15px;
+    font-weight:600;
+    color:var(--text-primary);
+    margin-bottom:6px;
+    display:-webkit-box;
+    -webkit-line-clamp:2;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    min-height:3em; /* Ensure consistent title height */
+  }
+  .card-meta{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    font-size:12px;
+    color:var(--text-secondary);
+    margin-bottom:var(--spacing-sm);
+  }
+  .active-dot{
+    display:inline-block;
+    width:8px;
+    height:8px;
+    background:var(--accent-blue);
+    border-radius:50%;
+  }
+
+  /* Buttons */
+  .btn{
+    background:linear-gradient(180deg, var(--accent-blue), var(--accent-blue-dark));
+    color:var(--text-primary); /* Keep text light for contrast */
+    border:none;
+    padding:9px 14px; /* Slightly larger padding */
+    border-radius:var(--radius-sm);
+    font-weight:600;
+    font-size:13px;
+    cursor:pointer;
+    box-shadow:var(--shadow-light);
+    transition:all 0.2s ease;
+    text-decoration:none; /* For anchor buttons */
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .btn:hover{
+    background:linear-gradient(180deg, var(--accent-blue-dark), var(--accent-blue));
+    transform:translateY(-1px);
+    box-shadow:0 6px 16px rgba(0,0,0,0.4);
+  }
+  .btn.secondary{
+    background:transparent;
+    border:1px solid var(--border-color);
+    color:var(--text-secondary);
+    box-shadow:none;
+  }
+  .btn.secondary:hover{
+    background:var(--hover-bg);
+    border-color:rgba(255,255,255,0.15);
+    transform:none;
+    box-shadow:none;
+  }
+
+  /* Ad Slot */
+  .ad-slot{
+    margin-top:var(--spacing-sm);
+    border-radius:var(--radius-sm);
+    min-height:80px; /* Taller ad slot */
+    background:var(--glass-effect);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--text-secondary);
+    font-size:12px;
+    border:1px dashed var(--border-color);
+    text-align:center;
+    line-height:1.4;
+  }
+
+  /* Overlays & Modals */
+  .overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.7); /* Darker, more solid overlay */
+    backdrop-filter:blur(8px); /* Glassmorphism effect */
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:var(--spacing-md);
+    z-index:1200;
+    opacity:0;
+    transition:opacity 0.3s ease;
+  }
+  .overlay.open{
+    opacity:1;
+    display:flex;
+  }
+  .panel{
+    width:100%;
+    max-width:540px; /* Slightly wider */
+    background:linear-gradient(180deg, var(--bg-light), #0f1218);
+    padding:var(--spacing-md);
+    border-radius:var(--radius-md);
+    border:1px solid var(--border-color);
+    box-shadow:var(--shadow-medium);
+    transform:translateY(20px);
+    opacity:0;
+    transition:transform 0.3s ease, opacity 0.3s ease;
+  }
+  .overlay.open .panel{
+    transform:translateY(0);
+    opacity:1;
+  }
+  label{
+    display:block;
+    font-size:13px;
+    color:var(--text-secondary);
+    margin-bottom:6px;
+    font-weight:500;
+  }
+  input[type="text"], textarea{
+    width:calc(100% - 20px); /* Account for padding */
+    padding:10px;
+    border-radius:var(--radius-sm);
+    border:1px solid var(--border-color);
+    background:var(--bg-dark);
+    color:var(--text-primary);
+    font-size:14px;
+    resize:vertical;
+    margin-bottom:var(--spacing-sm); /* Spacing for labels */
+    outline:none;
+    transition:border-color 0.2s ease;
+  }
+  input[type="text"]:focus, textarea:focus{
+    border-color:var(--accent-blue);
+    box-shadow:0 0 0 2px rgba(59,130,246,0.3);
+  }
+  textarea{min-height:80px;}
+  .close-x{
+    background:transparent;
+    border:0;
+    color:var(--text-secondary);
+    font-weight:700;
+    font-size:18px;
+    cursor:pointer;
+    padding:4px;
+    transition:color 0.2s ease;
+  }
+  .close-x:hover{color:var(--accent-blue);}
+  .ok-screen{
+    display:none;
+    text-align:center;
+    padding:22px;
+  }
+  .ok-screen .ok-btn{
+    margin-top:var(--spacing-md);
+  }
+  .ok-screen .btn{
+    min-width:140px; /* Make OK button more prominent */
+  }
+
+  /* Footer */
+  footer{
+    position:fixed;
+    left:0;
+    right:0;
+    bottom:0;
+    padding:12px var(--spacing-md); /* More padding */
+    background:linear-gradient(180deg, transparent, rgba(0,0,0,0.6)); /* More subtle gradient */
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:1000;
+  }
+  .small-note{
+    font-size:11px; /* Slightly smaller */
+    color:var(--text-secondary);
+    text-align:center;
+  }
+
+  /* Responsive Adjustments */
+  @media(min-width:600px){
+    .grid{
+      grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); /* Larger cards on wider screens */
+      gap:var(--spacing-md);
+    }
+    .card img{height:160px;} /* Taller images on wider screens */
+    h1{font-size:28px;}
+    p.lead{font-size:15px;}
+    .banner{margin-bottom:24px;}
+    .card{padding:12px;}
+  }
+  @media(min-width:768px){
+    .grid{
+      grid-template-columns:repeat(3,1fr);
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div style="flex:1">
+        <h1>Glamour & Style Deals</h1>
+        <p class="lead">Discover exclusive offers designed for you. Tap an image to send a quick message and unlock your personalized deal!</p>
+      </div>
+      <!-- Optional: Add a logo or brand element here -->
+      <!-- <img src="logo.png" alt="Brand Logo" style="height:40px;"> -->
+    </header>
+
+<!-- Banner -->
+<a href="#" class="banner" role="img" aria-label="Featured Offer Banner" id="mainBannerLink">
+  <img src="https://imgur.com/LgXjm6l.png" alt="banner image: Discover the latest fashion trends and beauty essentials" onerror="this.src='https://i.imgur.com/LgXjm6l.jpg'">
+</a>
+
+<!-- Grid of images -->
+<div class="grid" id="gallery">
+  <!-- Cards generated by JS -->
+</div>
+  </div>
+  <!-- Message overlay -->
+  <div class="overlay" id="messageOverlay" aria-hidden="true">
+    <div class="panel" role="dialog" aria-modal="true">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--spacing-sm);">
+        <strong id="overlayTitle" style="font-family: 'Montserrat', sans-serif; font-size:18px; font-weight:600;">Send Your Inquiry</strong>
+        <button class="close-x" id="closeOverlay" aria-label="Close message form">✕</button>
+      </div>
+
+<div id="formContent">
+    <label for="messageText">Your Message</label>
+    <textarea id="messageText" rows="4" placeholder="I'm interested in this offer. Please tell me more!" aria-label="Your message"></textarea>
+
+    <div style="display:flex;gap:var(--spacing-sm);margin-top:var(--spacing-sm);">
+      <button class="btn" id="sendBtn">Send Message</button>
+      <button class="btn secondary" id="cancelBtn">Cancel</button>
+    </div>
+
+    <div id="formStatus" style="margin-top:var(--spacing-sm);font-size:13px;color:var(--text-secondary);"></div>
+  </div>
+
+  <div class="ok-screen" id="okScreen">
+    <div style="font-size:20px;font-weight:700; color:var(--text-primary); font-family:'Montserrat', sans-serif;">Message Sent Successfully! ✅</div>
+    <div style="margin-top:8px;color:var(--text-secondary); font-size:14px;">Tap below to open your exclusive offer.</div>
+    <div class="ok-btn">
+      <a id="adLinkBtn" class="btn" href="#" target="_blank" rel="noopener noreferrer">Open Exclusive Offer</a>
+    </div>
+    <div style="margin-top:8px">
+      <button class="btn secondary" id="okClose">Return to Gallery</button>
+    </div>
+  </div>
+</div>
+  </div>
+  <footer>
+    <div class="small-note">Powered by Glamour & Style • Mobile optimized for a seamless experience. <br>Remember to replace all placeholder links and webhook URLs!</div>
+  </footer>
+<script>
+/* === CONFIG - replace these === */
+// তোমার দেওয়া Google Apps Script Webhook URL
+const GOOGLE_SHEET_WEBHOOK = "https://script.google.com/macros/s/AKfycby1EVNM_yv_SdZB2yGwUZ-TaghvzhXNX21_ZpJZ69hEEQDG2yWsRD4hDm6E-DCNozzP/exec"; 
+// তোমার Adsterra ডাইরেক্ট লিঙ্ক এখানে বসাও
+const ADSTERRA_DIRECT_LINK = "REPLACE_WITH_YOUR_ADSTERRA_LINK"; // <-- এটা তোমাকে তোমার Adsterra লিঙ্কের সাথে বদলে দিতে হবে
+/* ============================== */
+
+/* list of imgur images provided by user */
+const images = [
+  "https://imgur.com/N0fCNH8.png",
+  "https://imgur.com/Nhj3JgL.png",
+  "https://imgur.com/WO0nlbZ.png",
+  "https://imgur.com/h8LIOyG.png",
+  "https://imgur.com/yOIWHrn.png",
+  "https://imgur.com/sH5mCho.png",
+  "https://imgur.com/K2MBgqN.png",
+  "https://imgur.com/vjDC9dZ.png",
+  "https://imgur.com/BabZ1wE.png",
+  "https://imgur.com/ZBWzDNc.png",
+  "https://imgur.com/l08EyvJ.png",
+  "https://imgur.com/ugx2XT3.png",
+  "https://imgur.com/KiUlXzA.png",
+  "https://imgur.com/YPVMhO7.png",
+  "https://imgur.com/dSABsiU.png",
+  "https://imgur.com/CfiFbiR.png",
+  "https://imgur.com/NtD7uBz.png",
+  "https://imgur.com/eF3mqG3.png",
+  "https://imgur.com/Scs4Vwh.png",
+  "https://imgur.com/4Rpiq9T.png",
+  "https://imgur.com/9Qvy3Fn.png",
+  "https://imgur.com/7JKUDOi.png",
+  "https://imgur.com/vZXzlDn.png",
+  "https://imgur.com/BC7B2bs.png",
+  "https://imgur.com/okO13Ql.png",
+  "https://imgur.com/J0OJybH.png",
+  "https://imgur.com/HOVBZP8.png",
+  "https://imgur.com/DiNSt6G.png",
+  "https://imgur.com/dDtvJvT.png",
+  "https://imgur.com/0r8vf7W.png",
+  "https://imgur.com/BNiME3L.png",
+  "https://imgur.com/cttkfUv.png",
+  "https://imgur.com/U3VwT8O.png",
+  "https://imgur.com/0vvMJhe.png",
+  "https://imgur.com/EwfBqAP.png",
+  "https://imgur.com/WGGMm5g.png",
+  "https://imgur.com/Drcc8p5.png",
+  "https://imgur.com/IFd7HXD.png",
+  "https://imgur.com/A2o5K8c.png",
+  "https://imgur.com/5EgHnDT.png",
+  "https://imgur.com/457Mr3Z.png",
+  "https://imgur.com/0rT7UMY.png",
+  "https://imgur.com/mVNm7s3.png"
+];
+
+// More appealing and general titles
+const cardTitles = [
+  "New Arrivals in Fashion",
+  "Beauty Essentials Collection",
+  "Exclusive Skincare Savings",
+  "Designer Handbag Discount",
+  "Limited Edition Jewelry",
+  "Luxury Perfume Offer",
+  "Wellness Retreat Voucher",
+  "Fitness Gear Special",
+  "Summer Style Picks",
+  "Elegant Home Decor",
+  "Hair Care Secrets Revealed",
+  "Makeup Artist Favorites",
+  "Chic Apparel & Accessories",
+  "Seasonal Wardrobe Update",
+  "Sparkling Gemstone Deals",
+  "Radiant Skin Solutions",
+  "Travel & Leisure Discounts",
+  "Footwear Fashion Boost",
+  "Digital Course Access",
+  "Gourmet Food Experience",
+  "Handcrafted Artisan Goods",
+  "Home Spa Kits",
+  "Personal Styling Session",
+  "Unique Gift Ideas",
+  "Comfort & Coziness",
+  "Tech Gadgets for Her",
+  "Books & Beyond",
+  "Art & Craft Supplies",
+  "Gardening Delights",
+  "Pet Lover's Paradise",
+  "Automotive Accessories",
+  "Outdoor Adventure Gear",
+  "Musical Instrument Deals",
+  "Collectible Memorabilia",
+  "Educational Toys",
+  "Kitchen Gadget Mania",
+  "Photography Workshop",
+  "VR Experience Pass",
+  "Subscription Box Savings",
+  "Customizable Gifts",
+  "Sustainable Living Essentials",
+  "Vintage Finds Special",
+  "DIY Project Kits"
+];
+
+
+/* Helper to normalize Imgur PNG fallback */
+function imgFallback(url){
+  if(url.endsWith('.png')||url.endsWith('.jpg')||url.endsWith('.jpeg')) return url;
+  return url + ".png"; // Default to .png
+}
+
+/* Render gallery */
+const gallery = document.getElementById('gallery');
+images.forEach((src, idx) => {
+  const card = document.createElement('div');
+  card.className = 'card';
+
+  const imgEl = document.createElement('img');
+  imgEl.src = imgFallback(src);
+  // Assign a generic alt text
+  imgEl.alt = cardTitles[idx % cardTitles.length] + " - special offer"; 
+  imgEl.loading = "lazy";
+
+  const cardContent = document.createElement('div');
+  cardContent.className = 'card-content';
+
+  const title = document.createElement('div');
+  title.className = 'card-title';
+  title.innerText = cardTitles[idx % cardTitles.length]; // Use varied titles
+
+  const meta = document.createElement('div');
+  meta.className = 'card-meta';
+  meta.innerHTML = '<span class="active-dot"></span> Active Now';
+
+  const btn = document.createElement('button');
+  btn.className='btn';
+  btn.innerText='Unlock Deal'; // Changed button text to be more action-oriented
+  btn.addEventListener('click', (e)=> {
+    e.stopPropagation(); // Prevent card hover effect from being interrupted by button
+    openMessage(imgFallback(src));
+  });
+
+  const adSlot = document.createElement('div');
+  adSlot.className='ad-slot';
+  adSlot.innerText = 'AD SPACE\n(e.g., small banner)';
+  adSlot.setAttribute('data-image-idx', idx);
+
+  cardContent.appendChild(title);
+  cardContent.appendChild(meta);
+  cardContent.appendChild(btn);
+
+  card.appendChild(imgEl);
+  card.appendChild(cardContent);
+  card.appendChild(adSlot);
+
+  gallery.appendChild(card);
+});
+
+// Update banner link to ADSTERRA link if configured
+const mainBannerLink = document.getElementById('mainBannerLink');
+if (ADSTERRA_DIRECT_LINK && !ADSTERRA_DIRECT_LINK.includes('REPLACE_WITH')) {
+    mainBannerLink.href = ADSTERRA_DIRECT_LINK;
+}
+
+
+/* Overlay & form logic */
+const overlay = document.getElementById('messageOverlay');
+const closeOverlay = document.getElementById('closeOverlay');
+const cancelBtn = document.getElementById('cancelBtn');
+const messageText = document.getElementById('messageText');
+const sendBtn = document.getElementById('sendBtn');
+const formStatus = document.getElementById('formStatus');
+const okScreen = document.getElementById('okScreen');
+const formContent = document.getElementById('formContent');
+const adLinkBtn = document.getElementById('adLinkBtn');
+const okClose = document.getElementById('okClose');
+
+// Variable to store the image URL when opening the message form
+let currentSelectedImage = '';
+
+function openMessage(img){
+  overlay.classList.add('open');
+  overlay.setAttribute('aria-hidden','false');
+  currentSelectedImage = img; // Store the image URL here
+  messageText.value = '';
+  okScreen.style.display='none';
+  formContent.style.display='block';
+  formStatus.innerText = '';
+  document.body.style.overflow = 'hidden';
+  setTimeout(() => messageText.focus(), 300);
+}
+
+function closeMessage(){
+  overlay.classList.remove('open');
+  overlay.setAttribute('aria-hidden','true');
+  document.body.style.overflow = '';
+  currentSelectedImage = ''; // Clear the stored image when closing
+}
+
+closeOverlay.addEventListener('click', closeMessage);
+cancelBtn.addEventListener('click', closeMessage);
+okClose.addEventListener('click', closeMessage);
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && overlay.classList.contains('open')) {
+        closeMessage();
+    }
+});
+
+/* Send handler */
+sendBtn.addEventListener('click', async () => {
+  const message = messageText.value.trim();
+  if(!message){
+    formStatus.innerText = 'Please write a message before sending.';
+    return;
+  }
+  sendBtn.disabled = true;
+  formStatus.innerText = 'Sending...';
+
+  const payload = {
+    image: currentSelectedImage, // Use the stored image URL
+    message: message,
+    userAgent: navigator.userAgent, // User agent is already being collected
+    timestamp: new Date().toISOString()
+  };
+
+  try {
+    if(!GOOGLE_SHEET_WEBHOOK || GOOGLE_SHEET_WEBHOOK.includes('REPLACE_WITH')){
+      throw new Error('Webhook URL not configured. Replace GOOGLE_SHEET_WEBHOOK in the code with your endpoint.');
+    }
+
+    const resp = await fetch(GOOGLE_SHEET_WEBHOOK, {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify(payload)
+    });
+
+    if(!resp.ok){
+      const text = await resp.text().catch(()=>null);
+      throw new Error('Server error: ' + (text || resp.status));
+    }
+
+    formContent.style.display='none';
+    okScreen.style.display='block';
+    adLinkBtn.href = ADSTERRA_DIRECT_LINK && !ADSTERRA_DIRECT_LINK.includes('REPLACE_WITH') ? ADSTERRA_DIRECT_LINK : '#';
+    formStatus.innerText = '';
+  } catch(err){
+    console.error(err);
+    formStatus.innerText = 'Failed to send: ' + err.message;
+  } finally {
+    sendBtn.disabled = false;
+  }
+});
+
+/* Optionally, we can inject the remarkillustration scripts provided by you here */
+(function injectProvidedAdScripts(){
+  try{
+    const scripts = [
+      "//remarkillustration.com/a2441cb3ae97dbcd8c1ed9a198a71010/invoke.js",
+      "//remarkillustration.com/9c/48/a3/9c48a30da51b20fb7807a34b64893742.js",
+      "//remarkillustration.com/b3c5e99a6122208e1be8ab74fa97feca/invoke.js"
+    ];
+
+    scripts.forEach(src => {
+      const s = document.createElement('script');
+      s.defer = true;
+      s.src = src;
+      document.body.appendChild(s);
+    });
+
+    const cont = document.createElement('div');
+    cont.id = "container-b3c5e99a6122208e1be8ab74fa97feca";
+    document.body.appendChild(cont);
+  }catch(e){
+    console.warn('ad script injection failed', e);
+  }
+})();
+</script>
+</body>
+</html>
