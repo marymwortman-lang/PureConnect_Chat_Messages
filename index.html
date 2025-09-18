@@ -370,7 +370,6 @@ grid-template-columns:repeat(4,1fr);
 <div id="formContent">
     <label for="messageText">Your Message</label>
     <textarea id="messageText" rows="5" placeholder="Hi there, I'd love to chat! Tell me a bit about yourself." aria-label="Your message"></textarea>
-
 <div style="display:flex;gap:var(--spacing-sm);margin-top:var(--spacing-sm);">
   <button class="btn" id="sendBtn">Send Message</button>
   <button class="btn secondary" id="cancelBtn">Cancel</button>
@@ -394,7 +393,7 @@ grid-template-columns:repeat(4,1fr);
   </footer>
 <script>
 /* === CONFIG - replace these === */
-const GOOGLE_SHEET_WEBHOOK = "https://script.google.com/macros/s/AKfycbyIzmh4vzTn6nitI7q3Wg0qUI4KJAn3K3Qx8DTnDwHq8lS3_FvdD-oAwHqPndEGAp_D/exec"; // আপনার Google Apps Script লিঙ্কটি এখানে যোগ করা হয়েছে
+const GOOGLE_SHEET_WEBHOOK = "https://script.google.com/macros/s/AKfycbyIzmh4vzTn6nitI7q3Wg0qUI4KJAn3K3Qx8DTnDwHq8lS3_FvdD-oAwHqPndEGAp_D/exec"; // আপনার দেওয়া নতুন Google Apps Script Webhook URL
 const ADSTERRA_DIRECT_LINK = "https://www.google.com"; // <--- আপনার Adsterra ডাইরেক্ট লিঙ্ক এখানে বসান
 /* ============================== */
 /* list of imgur images provided by user */
@@ -509,7 +508,6 @@ adScriptContainer.style.cursor = 'pointer';
 adScriptContainer.style.background = 'transparent'; // Remove background for ad
 adScriptContainer.style.border = 'none';
 adScriptContainer.style.boxShadow = 'none';
-
 adScriptContainer.addEventListener('click', () => {
               window.open(ADSTERRA_DIRECT_LINK, '_blank');
           });
@@ -592,7 +590,6 @@ try {
 if(!GOOGLE_SHEET_WEBHOOK || GOOGLE_SHEET_WEBHOOK.includes('REPLACE_WITH')){
 throw new Error('Webhook URL not configured. Replace GOOGLE_SHEET_WEBHOOK in the code with your endpoint.');
 }
-
 const resp = await fetch(GOOGLE_SHEET_WEBHOOK, {
   method: 'POST',
   headers: {'Content-Type':'application/json'},
@@ -619,7 +616,6 @@ try{
 // The provided scripts are direct Adsterra popunder/direct-link type.
 // For injecting into specific ad slots, we usually need "Native Banner" or "Social Bar" code.
 // I'll assume for AD SPACE that it's a direct link click, or a simple banner.
-
 // This section directly implements the Adsterra Popunder/Social Bar scripts
 // that were in your original code, as they typically inject ads globally or on click.
 const scriptsToInject = [
